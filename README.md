@@ -11,7 +11,7 @@ Information for the Bing News Search API (v7) can be found at:
 
 [https://azure.microsoft.com/en-us/services/cognitive-services/bing-news-search-api/](https://azure.microsoft.com/en-us/services/cognitive-services/bing-news-search-api/)
 
-Using the preview tool on the Bing News Search API home page, we can see that the order of the JSON elements has changed a bit, but the `name` and `description` elements are still present.
+Using the preview tool on the Bing News Search API home page, we can see that the order of the JSON elements has changed a bit, but the elements that are used in the videos are still present.
 
 ```
 {
@@ -68,7 +68,7 @@ The documentation for v7 of the API can be found at:
 
 ### Obtaining API Keys
 
-You can obtain keys for v7 of the API by visiting the "Try Cognitive Services" page.
+You can obtain keys for v7 of the API by visiting the "Try Cognitive Services" page at:
 
 [https://azure.microsoft.com/en-us/try/cognitive-services/?api=bing-news-search-api](https://azure.microsoft.com/en-us/try/cognitive-services/?api=bing-news-search-api)
 
@@ -91,12 +91,13 @@ All of the steps shown in the video to create the `GetNewsForPlayer` are unchang
 The code for the finished WebClient `DownloadData` method call should look like this:
 
 ```
-byte[] searchResults = webClient.DownloadData(string.Format("https://api.cognitive.microsoft.com/bing/v7.0/news/search?q={0}", playerName));
+byte[] searchResults = webClient.DownloadData(
+	string.Format("https://api.cognitive.microsoft.com/bing/v7.0/news/search?q={0}", playerName));
 ```
 
 ## Video 4 - Deserialize the News Results
 
-All of the steps shown in the video are unchanged. For some reason, when uncommenting the code in the `Main` method, all of the text had been converted to lowercase text. To get the project to build, I had to update the code for the `Main` method to this.
+All of the steps shown in the video are unchanged. For some reason, when uncommenting the code in the `Main` method, all of the text had been converted to lowercase text. To get the project to build, I had to update the code for the `Main` method to this:
 
 ```
 string currentDirectory = Directory.GetCurrentDirectory();
