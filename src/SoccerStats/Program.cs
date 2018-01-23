@@ -26,7 +26,7 @@ namespace SoccerStats
             //}
             //filename = path.combine(directory.fullname, "topten.json");
             //serializeplayerstofile(toptenplayers, filename);
-            Console.WriteLine(GetGoogleHomePage());
+            Console.WriteLine(GetNewsForPlayer("Diego Valeri"));
         }
 
         public static string ReadFile(string fileName)
@@ -138,5 +138,17 @@ namespace SoccerStats
             }
         }
 
+        public static string GetNewsForPlayer(string playerName)
+        {
+            var webClient = new WebClient();
+            webClient.Headers.Add("Ocp-Apim-Subscription-Key", "18f2deef6d7a4e9086acff120e50cc26");
+            byte[] searchResults = webClient.DownloadData(string.Format("https://api.cognitive.microsoft.com/bing/v7.0/news/search?q={0}", playerName));
+
+            using (var stream = new MemoryStream(searchResults))
+            using (var reader = new StreamReader(stream))
+            {
+                return reader.ReadToEnd();
+            }
+        }
     }
 }
